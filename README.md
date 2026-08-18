@@ -11,15 +11,19 @@
 - **CI/CD**：GitHub Actions
 
 ## 项目结构
+```text
 sky-takeout-test/
+├── .github/workflows/
+│   └── test.yml           # GitHub Actions CI/CD 流水线配置文件
 ├── pages/
-│ └── login_page.py # PO模式页面层，管理元素定位和操作
-├── test_login.py # 登录接口自动化测试（含参数化）
-├── test_dish.py # 菜品接口自动化测试（含鉴权验证）
-├── test_ui_login.py # 登录页面UI自动化测试
-├── conftest.py # 公共fixture，统一管理token
-└── .github/workflows/
-└── test.yml # GitHub Actions CI/CD配置
+│   └── login_page.py      # PO模式页面层：统一管理UI元素定位和操作逻辑
+├── test_login.py          # 接口自动化：登录模块（含参数化与异常边界测试）
+├── test_dish.py           # 接口自动化：菜品模块（含Token提取与鉴权验证）
+├── test_ui_login.py       # UI自动化：基于Web端的登录页面交互测试
+├── conftest.py            # Pytest核心配置：全局Fixture与Token依赖注入
+├── performance_test.jmx   # JMeter 性能压测脚本
+└── README.md              # 项目说明文档
+```
 
 ## 测试覆盖
 
@@ -75,5 +79,4 @@ python -m pytest test_ui_login.py -v
 ```bash
 python -m pytest test_login.py test_dish.py -v --alluredir=allure-results
 allure serve allure-results
-```
 ```
